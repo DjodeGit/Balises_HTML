@@ -17,7 +17,18 @@ ex : <meta charset="UTF-8">, <meta content="width=device-width, initial-scale=1.
 attribut : class , id .
 ex : <body class= "dark">
 
+6. <link> : utiliser pour lier plusieurs pages 
+attribut : rel,href
+ex : <link rel="stylesheet" style="style.css"
+
+7. <script> : utiliser pour ajouter du javascript.
+attribut : src. 
+ex :<script src="app.js" defer></script>  
+
+8. <style> : utiliser pour ajouter du style 
+attribut : pas vraiment specifique 
 
 
 
 ```
+
