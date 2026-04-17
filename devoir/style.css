@@ -2,7 +2,6 @@
 * {
   margin: 0;
   padding: 0;
-  padding-left: 12px;
   box-sizing: border-box;
 }
 
@@ -609,6 +608,8 @@ footer {
   margin-top: 2px;
   padding-left: 0;
   transition: transform 0.3s ease;
+  vertical-align: middle;
+  margin-left: 2px;
 
 }
 .direction {
@@ -616,4 +617,63 @@ footer {
   left: 280px; top: 110px;
   transform: rotate(180deg);
   
+}
+.hero::before {
+  content: '';                /* obligatoire pour que ::after existe */
+  position: absolute;
+  inset: 0;                   /* couvre tout : top/right/bottom/left = 0 */
+  pointer-events: none;       /* les clics passent à travers */
+
+  /* 4 dégradés superposés, un par bord */
+  background:
+    /* bord GAUCHE : de la couleur du fond vers transparent */
+    linear-gradient(to right,  #f5f5f0 7%, transparent 20%),
+    /* bord DROIT */
+    linear-gradient(to left,   #f5f5f0 7%, transparent 20%),
+    /* bord HAUT */
+    linear-gradient(to bottom, #f5f5f0 7%, transparent 20%),
+    /* bord BAS */
+    linear-gradient(to top,    #f5f5f0 7%, transparent 20%);
+}
+.dir1 {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  z-index: 2;
+  /* filtre CSS pour colorer le SVG en vert foncé */
+  filter: invert(18%) sepia(40%) saturate(600%) hue-rotate(110deg) brightness(55%);
+  top: 92px;left: 457px;
+  transform: rotate(180deg);
+}
+.dir2 {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  z-index: 2;
+  /* filtre CSS pour colorer le SVG en vert foncé */
+  filter: invert(18%) sepia(40%) saturate(600%) hue-rotate(110deg) brightness(55%);
+  top: 97px;
+  right: 451px;
+  transform: rotate(260deg);
+}
+.dir3{
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  z-index: 2;
+  filter: invert(18%) sepia(40%) saturate(600%) hue-rotate(110deg) brightness(55%);
+  top: 439px;
+  left: 560px;
+  transform: rotate(96deg);
+}
+.dir4 {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  z-index: 2;
+  /* filtre CSS pour colorer le SVG en vert foncé */
+  filter: invert(18%) sepia(40%) saturate(600%) hue-rotate(110deg) brightness(55%);
+  top: 430px;
+  right: 571px;
+  transform: rotate(-20deg);
 }
