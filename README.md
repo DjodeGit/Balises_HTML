@@ -255,3 +255,8 @@ console.log(typeof nom);
 console.log(typeof age);
 console.log(typeof bool);
 ```
+## Comment eviter d utiliser le + pour concatener du texte et des variables
+*utiliser `${...}`
+```bash
+console.log(`je m appele ${nom}`);
+```

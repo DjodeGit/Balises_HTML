@@ -38,3 +38,4 @@ let chaussures = 120;
 let cout_total = billet + sac + chaussures;
 let reste = economies - cout_total;
 console.log("Il me reste "+reste+"€ après avoir acheté le billet, le sac et les chaussures")
+console.log(`il me reste ${reste}€ après avoir acheté le billet, le sac et les chaussures`);
