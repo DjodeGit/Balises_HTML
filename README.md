@@ -220,4 +220,38 @@ attribut : data, type
 ex : <object data="document.pdf" type="application/pdf"></object>
 
 ```
-
+# Comment utiliser une langue autre que ce qui nous ai propose par le navigateur
+```bash 
+1. aller dans google font
+2. puis choisir la langue souhaitee 
+3. ensuite telecharger la langue 
+4. apres avoir telecharger, il faut dezipper le dossier 
+5. ensuite, prendre les fichiers pour les langues et mettre dans le bon emplacement 
+```
+# Comment utiliser une icone en ligne 
+```bash
+1. partir sur la platefome lucide.
+2. rechercher l icone puis cliquer dessus
+3. en suite copier l url au format svg puis aller dans le code ouvrir une balise svg et mettre la source de l image copier au format svg
+```
+# Javascripts
+## Comment declarer les variables et comment faire pour afficher a l ecran
+*utiliser let pour declarer une variable
+```bash
+let nom="Tagne; 
+let age= 12;
+let bool = true;
+```
+*utiliser console.log pour afficher a l ecran 
+```bash
+console.log("hello word");
+console.log(nom);
+console.log("bonjour je m appele "+ nom + "
+et je suis age de "+ age);
+## Comment determiner le type d une variable 
+*utiliser typeof pour determiner le type d une variable
+```bash
+console.log(typeof nom);
+console.log(typeof age);
+console.log(typeof bool);
+```
