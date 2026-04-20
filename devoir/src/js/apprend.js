@@ -39,3 +39,53 @@ let cout_total = billet + sac + chaussures;
 let reste = economies - cout_total;
 console.log("Il me reste "+reste+"€ après avoir acheté le billet, le sac et les chaussures")
 console.log(`il me reste ${reste}€ après avoir acheté le billet, le sac et les chaussures`);
+
+/*EXERCICE 3:
+Conditions(if/else) utiliser les operateurs de comparaison dans les conditions
+*/
+let prix=2000;
+let note = 18;
+let temperature =32;
+let pays = 'France';
+let status = 'etudiant';
+if(prix<=2000){
+    console.log("le prix est insuffisant " );
+}
+else if(prix<=4000){
+    console.log("le prix est largement suffisant " );
+}
+else{
+    console.log("le prix est suffisant et nous aurons un reste bien considerable " );
+}
+
+if(pays==='France' && status==='etudiant' && note>=8){
+    console.log("vous avez droit a une reduction de 20% " );
+}
+else if(pays==='France' && status==='etudiant' && note>=10){
+    console.log("vous avez droit a une reduction de 30% " );
+}
+else if(pays==='France' && status==='etudiant' && note>=15){
+    console.log("vous avez droit a une reduction de 50% " );
+}
+else if (pays==='France' && status!=='etudiant' && note>=18){
+    console.log("vous avez droit a une reduction de 10% " );
+}
+else{
+    console.log("vous n'avez pas droit a une reduction " );
+}
+
+if(temperature<0){
+    console.log("il fait tres froid " );
+}
+else if(temperature>=0 && temperature<15){
+    console.log("il fait froid " );
+}
+else if(temperature>=15 && temperature<25){
+    console.log("il fait doux " );
+}
+else if(temperature>=25 && temperature<35){
+    console.log("il fait chaud " );
+}
+else{
+    console.log("il fait tres chaud " );
+} 

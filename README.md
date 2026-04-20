@@ -260,3 +260,16 @@ console.log(typeof bool);
 ```bash
 console.log(`je m appele ${nom}`);
 ```
+## Conditions 
+### Conditions(if/else)
+```bash
+if(conditions){
+  ...
+}
+else if(conditions){
+  ...
+}
+else {
+...
+}
+```
