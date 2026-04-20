@@ -1,6 +1,6 @@
 /*EXERCICE 1*/
 let nom='Ali';
-let n=7;
+
 let age=26;
 let estmajeur=true;
 let a=20;
@@ -16,9 +16,7 @@ console.log(a*b);
 console.log(a/b);
 console.log(a%b);
 
-for(let i=0;i<10;i++){
-    console.log(n+'x'+i+'='+n*i);
-}
+
 
 /*EXERCICE 2:
 Crée les variables : economies, billet, sac, chaussures
@@ -89,3 +87,23 @@ else if(temperature>=25 && temperature<35){
 else{
     console.log("il fait tres chaud " );
 } 
+
+
+/*EXERCICE 4:
+Boucles (for)
+*/
+let n=7;
+let s=0;
+let payss = ['France','Allemagne','Espagne','Italie','Portugal'];
+for(let i=0;i<=12;i++){
+    console.log(`${n} x ${i} =  ${n*i}`);
+    
+}
+for(let i =0; i<12;i++){
+    s=s+i;
+}
+console.log(`la somme des 12 premiers terme est ${s}`);
+console.log("les pays disponibles dans la liste sont :");
+for(let i=0;i<payss.length;i++){
+    console.log(`✈️${payss[i]}`);
+}
