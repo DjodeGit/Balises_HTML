@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon App Frontend</title>
+    <link rel="stylesheet" href="/devoir/src/assets/css/style1.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="titrePrincipal">Mon Application Frontend</h1>
+        
+        <p id="message">Clique sur le bouton ci-dessous</p>
+        
+        <button id="btnChanger">Changer le message</button>
+        <button id="btnCacher">Cacher le message</button>
+        <button id="btnAfficher">Afficher le message</button>
+        
+        <div class="zone-couleur">
+            <p>Change la couleur du texte :</p>
+            <button id="btnRouge">Rouge</button>
+            <button id="btnVert">Vert</button>
+            <button id="btnBleu">Bleu</button>
+        </div>
+        
+        <div class="compteur">
+            <p>Compteur : <span id="valeurCompteur">0</span></p>
+            <button id="btnIncrement">+1</button>
+            <button id="btnReset">Remettre à zéro</button>
+            <input type="number" placeholder="0" style="width: 30px;" id="incrementer">
+        </div>
+        <div class="todo">
+            <h3>Ma liste de tâches</h3>
+            <input type="text" id="nouvelleTache" placeholder="Entrer une tâche...">
+            <button id="btnAjouter">Ajouter</button>
+            <button id="btnSupprimer">Supprimer dernière</button>
+            <ul id="listeTaches"></ul>
+        </div>
+        <div class="compteur">
+            <button id="btnChangerTitre" class="changer_titre">changer le titre</button>
+            
+
+        </div>
+    </div>
+    
+    <script src="/devoir/src/js/javascp.js"></script>
+</body>
+</html>
