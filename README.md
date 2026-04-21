@@ -279,3 +279,5 @@ for(let i =0; i<12;i++){
   let s=s+i
 }
 console.log(`la somme des 12 premiers terme est ${s}`);
+```
+## fonctions
