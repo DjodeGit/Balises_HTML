@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire de voyage</title>
+    <link rel="stylesheet" href="/devoir/src/assets/css/style2.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🌍 Planificateur de voyage</h1>
+        
+        <form id="formVoyage">
+            <div class="champ">
+                <label>✈️ Destination :</label>
+                <input type="text" id="destination" placeholder="Ex: Japon, Maroc..." required>
+            </div>
+            
+            <div class="champ">
+                <label>💰 Budget total (€) :</label>
+                <input type="number" id="budget" placeholder="500" min="0">
+            </div>
+            
+            <div class="champ">
+                <label>📅 Nombre de jours :</label>
+                <input type="number" id="jours" placeholder="7" min="1">
+            </div>
+            
+            <div class="champ">
+                <label for="hebergement">🏨 Type d'hébergement :</label>
+                <select id="hebergement">
+                    <option value="auberge">Auberge de jeunesse (30€/jour)</option>
+                    <option value="moyen">Hôtel moyen (80€/jour)</option>
+                    <option value="luxe">Hôtel luxe (150€/jour)</option>
+                </select>
+            </div>
+            
+            <div class="champ">
+                <label>🥗 Repas inclus ?</label>
+                <label for="repasInclus" class="checkbox-label">
+                    <input type="checkbox" id="repasInclus" title="Repas inclus" aria-label="Repas inclus" placeholder="Oui"> Oui (+20€/jour)
+                </label>
+            </div>
+            
+            <div class="champ">
+                <label>👥 Nombre de voyageurs :</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="voyageurs" value="seul" checked> Seul</label>
+                    <label><input type="radio" name="voyageurs" value="couple"> En couple</label>
+                    <label><input type="radio" name="voyageurs" value="famille"> En famille</label>
+            
+            </div>
+            
+            <div class="champ">
+                <label>📝 Notes supplémentaires :</label>
+                <textarea id="notes" rows="3" placeholder="Préférences, besoins particuliers..."></textarea>
+            </div>
+
+            <div class="champ">
+                <label>💰 Budget (curseur) :</label>
+                <input type="range" id="budgetRange" min="0" max="2000" step="50">
+            </div>
+
+            <div class="champ">
+                <label><input type="checkbox" id="assurance"> Assurance voyage (+50€)</label>
+            </div>
+            
+            <button type="submit">📊 Calculer mon voyage</button>
+            <button type="button" id="btnReset">🗑️ Réinitialiser</button>
+        </form>
+        
+        <div id="resultat" class="resultat">
+            <h3>📋 Résultat du calcul</h3>
+            <p>Remplis le formulaire et clique sur "Calculer"</p>
+        </div>
+    </div>
+    
+    <script src="/devoir/src/js/script1.js"></script>
+</body>
+</html>
