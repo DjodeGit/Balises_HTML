@@ -40,6 +40,26 @@ function getMultiplicateurVoyageurs() {
     return 1;
 }
 
+//Sauvegarder les dernuers resultats avec le localStorage
+function SauvegardeDernierVoyage(){
+    let derniervoyage ={
+        destination : destination.value,
+        budget : budget.value,
+        jours : jours.value,
+        hebergement : hebergement.value,
+        repasInclus: repasInclus.checked,
+        voyageurs: document.querySelector('input[name="voyageurs"]:checked')?.value || "seul",
+        notes: notes.value,
+        dateSauvegarde: new Date().toLocaleString()
+    };
+    localStorage.setItem("derniervoyage",JSON.stringify(derniervoyage));
+    console.log("voyage sauvegarder !");
+
+
+    
+}
+
+
 // Afficher le résultat
 function afficherResultat() {
     // Vérifier que les champs sont remplis
@@ -119,6 +139,7 @@ function resetFormulaire() {
 form.addEventListener("submit", function(event) {
     event.preventDefault(); // Empêche le rechargement de la page
     afficherResultat();
+    SauvegardeDernierVoyage();
 });
 
 // Écouter le bouton reset

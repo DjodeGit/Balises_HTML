@@ -281,3 +281,17 @@ for(let i =0; i<12;i++){
 console.log(`la somme des 12 premiers terme est ${s}`);
 ```
 ## fonctions
+## les evenements(DOM: Document Objet Model)
+## le localStorage
+le localStorage c est un espace de stockage qui permet au navigateur de sauvegarder des donnees sous forme de paire cle/valeur
+### sauvegarde des donnees
+on utilise la commade 
+```bash
+localStorage.setItem
+ex: localStorage.setItem("nom", "Alice")
+```
+N.B: ici on ne peut stocker que du texte mais pour stocker autre chose comme le tableau les objets on utilise 
+```bash 
+JSON.stringify() qui convertit en texte
+JSON.parse() qui convertit en objet/tableau
+```
