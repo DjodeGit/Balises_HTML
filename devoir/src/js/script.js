@@ -17,3 +17,5 @@ document.addEventListener('DOMContentLoaded',()=>{
         console.log('aucun element retrouver dans la liste');
     })
 })
+
+/*javascript pour formulaire.html*/
