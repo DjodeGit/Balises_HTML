@@ -107,3 +107,41 @@ console.log("les pays disponibles dans la liste sont :");
 for(let i=0;i<payss.length;i++){
     console.log(`✈️${payss[i]}`);
 }
+
+function afficherDestinations(payss){
+    
+        console.log(`je reve d aller au ✈️${payss}`);
+}
+
+function verifierbudget(budjet,prixBillet){
+    if(budjet>=prixBillet){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+function ConseilVoyage(budget){
+    if(budget>=1000){
+        console.log("voyage de luxe possible !");
+
+    }
+    else if(budget>=500){
+        console.log("voyage confortable possible !");
+
+    }
+    else if(budget>=200){
+        console.log("voyage economique possible !");
+
+    }
+    else{
+        console.log("budget insuffisant pour un voyage !");
+    }
+}
+
+afficherDestinations("Japon");
+console.log(verifierbudget(800, 350)); // true
+ConseilVoyage(800);
+
+let message= document.getElementById("message");
+message.innerHTML="Bienvenue dans le monde du développement web !";
