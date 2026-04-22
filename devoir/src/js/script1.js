@@ -8,6 +8,10 @@ let repasInclus = document.getElementById("repasInclus");
 let notes = document.getElementById("notes");
 let btnReset = document.getElementById("btnReset");
 let divResultat = document.getElementById("resultat");
+let effacer = document.getElementById("btnEffacer");
+let Sauvegarder = document.getElementById("btnSauvegarder");
+let charger = document.getElementById("btnCharger")
+
 
 // Prix par jour selon l'hébergement
 function getPrixHebergement(type) {
@@ -54,11 +58,48 @@ function SauvegardeDernierVoyage(){
     };
     localStorage.setItem("derniervoyage",JSON.stringify(derniervoyage));
     console.log("voyage sauvegarder !");
-
-
-    
 }
+// Charger le dernier voyage sauvegardé
+function chargerDernierVoyage() {
+    let sauvegarde = localStorage.getItem("derniervoyage");
+    if(sauvegarde){
+        let voyage = JSON.parse(sauvegarde);
+        destination.value=voyage.destination;
+        budget.value=voyage.budget;
+        jours.value=voyage.jours;
+        hebergement.value=voyage.hebergement;
+        repasInclus=voyage.repasInclus;
+        notes.value = voyage.notes;
+        // Sélectionner le bon radio bouton
+        let radio = document.querySelector(`input[name="voyageurs"][value="${voyage.voyageurs}"]`);
+        if (radio) radio.checked = true;
+        divResultat.innerHTML = `
+            <h3>📀 Chargement automatique</h3>
+            <p>Dernier voyage du ${voyage.dateSauvegarde} restauré.</p>
+            <p>Clique sur "Calculer" pour voir le résultat.</p>
+        `;
+        
+        console.log("✅ Dernier voyage chargé !");
+    } else {
+        console.log("📭 Aucune sauvegarde trouvée");
+    }
+}
+// charger le dernier voyage 
+charger.addEventListener("click", function(){
+    chargerDernierVoyage();
+})
 
+// sauvegarder le dernier voyage
+Sauvegarder.addEventListener("click", function(){
+    SauvegardeDernierVoyage();
+})
+// Effacer une sauvegarde 
+function EffacerSauvegardes(){
+    let effacer = localStorage.removeItem("derniervoyage");
+    divResultat.innerHTML = `<h3>Sauvegarde supprimer !</h3>
+    <p> toutes les sauvegardes ont ete supprime </p>`;
+    console.log("acune sauvegarde trouvee ");
+}
 
 // Afficher le résultat
 function afficherResultat() {
@@ -141,6 +182,11 @@ form.addEventListener("submit", function(event) {
     afficherResultat();
     SauvegardeDernierVoyage();
 });
+
+// Ecoute l evenement pour supprimer la derniere sauvegarde
+effacer.addEventListener("click",function(){
+    EffacerSauvegardes();
+})
 
 // Écouter le bouton reset
 btnReset.addEventListener("click", resetFormulaire);
