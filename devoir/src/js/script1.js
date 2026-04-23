@@ -101,6 +101,82 @@ function EffacerSauvegardes(){
     console.log("acune sauvegarde trouvee ");
 }
 
+// ========== GESTION DE LA MODALE ==========
+
+// Récupérer les éléments de la modale
+let modalOverlay = document.getElementById("modalOverlay");
+let modalTitre = document.getElementById("modalTitre");
+let modalMessage = document.getElementById("modalMessage");
+let modalFermer = document.getElementById("modalFermer");
+let modalBtnFermer = document.getElementById("modalBtnFermer");
+
+// Fonction pour afficher la modale
+function afficherModal(titre, message, estSucces) {
+    // Changer le titre et le message
+    modalTitre.textContent = titre;
+    modalMessage.textContent = message;
+    
+    // Appliquer classe CSS pour thème success/error
+    modalOverlay.className = estSucces ? 'modal-overlay success-theme' : 'modal-overlay error-theme';
+    
+    // Afficher la modale
+    modalOverlay.style.display = "flex";
+}
+
+// Fonction pour fermer la modale
+function fermerModal() {
+    modalOverlay.style.display = "none";
+    modalOverlay.className = 'modal-overlay'; // Reset thème
+}
+
+// Écouter les clics sur les boutons de fermeture
+if (modalFermer) {
+    modalFermer.addEventListener("click", fermerModal);
+}
+if (modalBtnFermer) {
+    modalBtnFermer.addEventListener("click", fermerModal);
+}
+
+// Fermer la modale si on clique sur le fond sombre
+if (modalOverlay) {
+    modalOverlay.addEventListener("click", function(event) {
+        if (event.target === modalOverlay) {
+            fermerModal();
+        }
+    });
+}
+
+// reduction de 10% si le code promo est correct
+function CoutTotal_Reduction() {
+let coupon= document.getElementById("coupon");
+
+    let coutTotal = calculerCoutTotal();
+    let coutTotal1 ;
+    coutTotal1=coutTotal;
+    let code =coupon.value;
+   
+    if(code === "promo123"){
+        coutTotal1 = coutTotal - (coutTotal*10)/100;
+                afficherModal(
+                    "🎉 Code valide !",
+                    `Félicitations ! Tu économises ${(coutTotal*10).toFixed(2)} €.\n
+                    Nouveau total : ${coutTotal1.toFixed(2)} € (au lieu de ${coutTotal.toFixed(2)} €)`,
+                    true
+                );
+    }
+    else if(coupon === "" || code !== "promo123"){
+        
+        afficherModal(
+            "❌ Code invalide",
+            "Le code promo que tu as saisi n'est pas reconnu.",
+            false
+        );
+    }
+
+return coutTotal1;
+
+}
+
 // Afficher le résultat
 function afficherResultat() {
     // Vérifier que les champs sont remplis
@@ -128,18 +204,25 @@ function afficherResultat() {
     let repas = repasInclus.checked ? "Oui" : "Non";
     let nbVoyageurs = getMultiplicateurVoyageurs();
     let notesValue = notes.value || "Aucune note";
+
+
+
     
     // Calculs
-    let coutTotal = calculerCoutTotal();
-    let coutParPersonne = coutTotal / nbVoyageurs;
-    let reste = budgetTotal - coutTotal;
+    let coutTotal1 = CoutTotal_Reduction() ;
+    let coutParPersonne = coutTotal1 / nbVoyageurs;
+    let reste = budgetTotal - coutTotal1;
     let resteParPersonne = reste / nbVoyageurs;
+
+
+
+
     
     // Vérifier si le budget est suffisant
     let statut = reste >= 0 ? "✅" : "❌";
     let messageStatut = reste >= 0 
         ? `Il te reste ${reste} € (${resteParPersonne} € par personne)`
-        : `Il te manque ${Math.abs(reste)} € (${Math.abs(resteParPersonne)} € par personne)`;
+        : `Il te manque ${Math.abs(reste)} € (${Math.abs(resteParPersonne)} € )`;
     
     // Afficher le résultat
     divResultat.innerHTML = `
@@ -151,7 +234,7 @@ function afficherResultat() {
             <p><strong>🥗 Repas inclus :</strong> ${repas}</p>
             <p><strong>👥 Voyageurs :</strong> ${nbVoyageurs} personne(s)</p>
             <hr>
-            <p><strong>💸 Coût total estimé :</strong> ${coutTotal} €</p>
+            <p><strong>💸 Coût total estimé :</strong> ${coutTotal1} €</p>
             <p><strong>👤 Coût par personne :</strong> ${coutParPersonne} €</p>
             <p><strong>${statut} ${messageStatut}</strong></p>
             <hr>
@@ -199,3 +282,105 @@ budget.addEventListener("input", function() {
 });
 
 console.log("✅ Formulaire de voyage chargé !");
+
+
+
+
+
+
+
+
+//API avec fetch
+// ========== PARTIE API ==========
+
+// API gratuite : https://restcountries.com/
+function getInfosPays(pays) {
+    // L'API attend le nom du pays en anglais
+    let url = `https://restcountries.com/v3.1/name/${pays}`;
+    
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Pays non trouvé");
+            }
+            return response.json();
+        })
+        .then(data => {
+            // data[0] = premier résultat
+            let paysData = data[0];
+            
+            let capitale = paysData.capital?.[0] || "Non disponible";
+            let monnaie = paysData.currencies ? Object.keys(paysData.currencies)[0] : "Non disponible";
+            let population = paysData.population.toLocaleString();
+            let drapeau = paysData.flags?.png || "";
+            let region = paysData.region;
+            
+            // Afficher les infos
+            afficherInfosPays(capitale, monnaie, population, drapeau, region);
+        })
+        .catch(error => {
+            console.log("Erreur API : " + error);
+            afficherInfosPays("Non trouvée", "Non disponible", "?", "", "");
+        });
+}
+
+// Afficher les infos du pays dans la page
+function afficherInfosPays(capitale, monnaie, population, drapeau, region) {
+    let divInfos = document.getElementById("infosPays");
+    
+    if (!divInfos) {
+        
+        let resultatDiv = document.getElementById("resultat");
+        divInfos = document.createElement("div");
+        divInfos.id = "infosPays";
+        divInfos.style.marginTop = "20px";
+        divInfos.style.padding = "10px";
+        divInfos.style.border = "1px solid #ccc";
+        divInfos.style.borderRadius = "5px";
+        resultatDiv.parentNode.insertBefore(divInfos, resultatDiv.nextSibling);
+    }
+    
+    let drapeauHTML = drapeau ? `<img src="${drapeau}" width="50" style="vertical-align:middle; margin-right:10px">` : "";
+    
+    divInfos.innerHTML = `
+        <h4>🌍 Informations sur le pays</h4>
+        ${drapeauHTML}
+        <p><strong>🏙️ Capitale :</strong> ${capitale}</p>
+        <p><strong>💰 Monnaie :</strong> ${monnaie}</p>
+        <p><strong>👥 Population :</strong> ${population}</p>
+        <p><strong>🗺️ Région :</strong> ${region}</p>
+        
+    `;
+}
+
+// Modifier la fonction afficherResultat pour ajouter l'appel API
+// Ajoute cette ligne à la fin de ta fonction afficherResultat() :
+
+function afficherResultat1() {
+    // ... tout ton code existant (vérifications, calculs, affichage) ...
+    
+    // AJOUTE CET APPEL API À LA FIN
+    if (destination.value !== "") {
+        getInfosPays(destination.value);
+    }
+}
+
+// Chercher les infos manuellement (sans attendre le calcul)
+function rechercherInfosPays() {
+    if (destination.value !== "") {
+        getInfosPays(destination.value);
+    } else {
+        alert("Tape d'abord une destination !");
+    }
+}
+
+// Ajoute cet écouteur dans ton code (quand la page charge)
+// Tu dois d'abord créer un bouton dans ton HTML :
+// <button type="button" id="btnInfosPays">🌍 Infos sur ce pays</button>
+
+let btnInfos = document.getElementById("btnInfosPays");
+if (btnInfos) {
+    btnInfos.addEventListener("click", rechercherInfosPays);
+}
+
+
