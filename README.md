@@ -295,3 +295,23 @@ N.B: ici on ne peut stocker que du texte mais pour stocker autre chose comme le 
 JSON.stringify() qui convertit en texte
 JSON.parse() qui convertit en objet/tableau
 ```
+### consulter les donnees
+```bash
+localStorage.getItem
+ex: localStorage.getItem("nom");
+```
+### supprimer une donnee
+```bash
+localStorage.removeItem
+ex: localStorage.removeItem("nom");
+```
+### supprimer toutes les donnees
+```bash
+localStorage.clear
+ex: localStorage.clear()
+```
+### recuperer une cle par son index
+```bash
+localStorage.key
+ex: localStorage.key(0);
+```
