@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulaire de voyage</title>
     <link rel="stylesheet" href="/devoir/src/assets/css/style2.css">
+    <link rel="stylesheet" href="/devoir/src/assets/css/promo.css">
+    
 </head>
 <body>
     <div class="container">
@@ -57,12 +59,16 @@
             </div>
 
             <div class="champ">
-                <label>💰 Budget (curseur) :</label>
+                <label for="budgetRange">💰 Budget (curseur) :</label>
                 <input type="range" id="budgetRange" min="0" max="2000" step="50">
             </div>
 
             <div class="champ">
                 <label><input type="checkbox" id="assurance"> Assurance voyage (+50€)</label>
+            </div>
+            <div class="champ">
+                <label for="coupon">Coupon : </label>
+                <input type="text" id="coupon" placeholder="CODEPROMO">
             </div>
             
             <button type="submit">📊 Calculer mon voyage</button>
@@ -71,8 +77,32 @@
             <button type="button" id="btnSauvegarder">💾 Sauvegarder ce voyage</button>
             <button type="button" id="btnCharger">📂 Charger dernier voyage</button>
             
+            <!-- MODALE PROFESSIONNELLE CODE PROMO -->
+            <div id="modalOverlay" class="modal-overlay">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 id="modalTitre">🎁 Code Promo</h3>
+                        <button id="modalFermer" class="modal-close">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="modalMessage">Vérification du code...</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="modalBtnFermer" class="modal-btn">Fermer</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ajoute cette zone dans ton formulaire ou à côté -->
+            <div id="zoneInfosPays" style="margin: 15px 0; padding: 10px; background: #f5f5f5; border-radius: 5px;">
+                <p>🌍 Les informations du pays apparaîtront ici</p>
+            </div>
+
+            <!-- Optionnel : bouton manuel -->
+            <button type="button" id="btnInfosPays">🔍 Rechercher infos du pays</button>
         </form>
         
+
         <div id="resultat" class="resultat">
             <h3>📋 Résultat du calcul</h3>
             <p>Remplis le formulaire et clique sur "Calculer"</p>
