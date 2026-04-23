@@ -796,7 +796,7 @@ footer {
     transition: all 0.3s;
 }
 
-/* Quand le menu est ouvert */
+/* Quand le menu est ouvert */          
 .hambuger.open span:nth-child(1) {
     transform: rotate(45deg) translate(5px, 5px);
 }
